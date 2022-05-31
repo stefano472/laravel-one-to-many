@@ -23,5 +23,5 @@
 @endsection --}}
 
 <h3>
-    Non sei connesso!!!
+    Work in Progress!!
 </h3>
