@@ -1,27 +1,12 @@
 @extends('layouts.app')
 
-{{-- @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+@section('content')
+    <div class="container">
+        <h2>
+            Site under maintenance
+        </h3>
+        <p>
+            Work in Progress, be patient...
+        </p>
     </div>
-</div>
-@endsection --}}
-
-<h3>
-    Work in Progress!!
-</h3>
+@endsection
