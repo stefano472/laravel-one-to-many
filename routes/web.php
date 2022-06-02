@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Rotta per l'autenticazione gestita giá da larvarel
-Auth::routes();
+// una volta che ho registrato l'amministratore posso disattivare alcune rotte
+// necessarie per registrazione e recupero password, in modo da rendere il sito meno 
+// hackerabile
+Auth::routes(['register' => false, 'reset'=>false, 'verify'=> false]);
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

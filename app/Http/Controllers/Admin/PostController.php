@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Str;
-
 use App\post;
 
 class PostController extends Controller
@@ -43,9 +41,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        // con il request validate nel secondo campo posso specificare il tipo di
+        // errore che apparirá a schermo tramite il secondo array vado a definirlo
         $request->validate([
             'title'=> 'required|max:250',
             'content'=> 'required',
+        ], [
+            'title.max'=> ':attribute puó avere massimo :max caratteri'
         ]);
         $postData = $request->all();
         $newPost = new Post();
@@ -103,6 +105,8 @@ class PostController extends Controller
         $request->validate([
             'title'=> 'required|max:250',
             'content'=> 'required',
+        ], [
+            'title.max'=> ':attribute puó avere massimo :max caratteri'
         ]);
         $postData = $request->all();
 
