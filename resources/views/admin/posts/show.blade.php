@@ -14,8 +14,8 @@
                 <dd>{{$post->title}}</dd>
                 <dt>Slug:</dt>
                 <dd>{{$post->slug}}</dd>
-                {{-- <dt>Category:</dt>
-                <dd>{{$category->name}}</dd> --}}
+                <dt>Category:</dt>
+                <dd>{{$category->name}}</dd>
                 <dt>Content:</dt>
                 <dd>{{$post->content}}</dd>
             </dl>

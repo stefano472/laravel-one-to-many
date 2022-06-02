@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label for="title">Title:</label>
                                 <input type="text" name="title" 
-                                    class="form-control @error('title') is-invalid @enderror " 
+                                    class="form-control @error('title') is-invalid @enderror" 
                                     placeholder="Post's title"
                                     value="{{ old('title', $post->title) }}"
                                 >
@@ -42,6 +42,27 @@
                                 @enderror
                             </div>
                             {{--/ title post --}}
+
+                            {{-- categories select --}}
+                            <div class="form-group">
+                                <label for="title">Category:</label>
+                                <select name="category_id" class="@error('category_id') is-invalid @enderror">
+                                    <option value="">Select a Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ $category->id == old('category_id', $post->category_id) ? 'selected' : '' }}
+                                        >
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('category_id')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                            {{--/ categories select --}}
 
                             {{-- content post --}}
                             <div class="form-group">

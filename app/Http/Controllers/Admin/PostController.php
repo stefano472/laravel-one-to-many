@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\post;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -29,7 +30,9 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('admin.posts.create');
+        $categories = Category::all();
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -46,8 +49,10 @@ class PostController extends Controller
         $request->validate([
             'title'=> 'required|max:250',
             'content'=> 'required',
+            'category_id'=> 'required|exists:categories,id'
         ], [
-            'title.max'=> ':attribute puó avere massimo :max caratteri'
+            'title.max'=> ':attribute puó avere massimo :max caratteri',
+            'category_id.required'=> 'Seleziona una categoria'
         ]);
         $postData = $request->all();
         $newPost = new Post();
@@ -73,8 +78,9 @@ class PostController extends Controller
         if(!$post) {
             abort(404);
         }
+        $category = Category::find($post->category_id);
 
-        return view('admin.posts.show', compact('post'));
+        return view('admin.posts.show', compact('post', 'category'));
     }
 
     /**
@@ -89,7 +95,10 @@ class PostController extends Controller
         if(!$post){
             abort(404);
         }
-        return view('admin.posts.edit', compact('post'));
+
+        $categories = Category::all();
+
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -105,8 +114,10 @@ class PostController extends Controller
         $request->validate([
             'title'=> 'required|max:250',
             'content'=> 'required',
+            'category_id'=> 'required|exists:categories,id'
         ], [
-            'title.max'=> ':attribute puó avere massimo :max caratteri'
+            'title.max'=> ':attribute puó avere massimo :max caratteri',
+            'category_id.required'=> 'Seleziona una categoria'
         ]);
         $postData = $request->all();
 
