@@ -19,7 +19,10 @@ class PostController extends Controller
     {
         //
         $posts = Post::all();
-        return view('admin.posts.index', compact('posts'));
+        // $category = Category::find($post->category_id);
+        $categories = Category::all();
+        
+        return view('admin.posts.index', compact('posts', 'categories'));
     }
 
     /**

@@ -21,6 +21,7 @@
                             <th>ID</th>
                             <th>Title</th>
                             <th>Slug</th>
+                            <th>Category</th>
                             <th class="text-center">Actions</th>
                         </tr>
                         {{--/ Table title  --}}
@@ -32,7 +33,24 @@
                                 <td>{{ $post->id }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->slug }}</td>
+                                <td>
+                                    @foreach ($categories as $category)
+                                        @if ($category->id === $post->category_id) 
+                                            {{ $category->name }}
+                                        @endif
+                                    @endforeach
+                                </td>
                                 <td class="text-center">
+                                    <a href="{{ route('admin.posts.show' , $post->id) }}" 
+                                        class="btn btn-outline-secondary text-decoration-none" 
+                                        > 
+                                        Show
+                                    </a>
+                                    <a href="{{ route('admin.posts.edit' , $post->id) }}" 
+                                        class="btn btn-outline-info text-decoration-none" 
+                                        > 
+                                        Edit
+                                    </a>
                                     <a href="{{ route('admin.posts.show', $post->id) }}"
                                         class="text-decoration-none">
                                         <form action="{{route('admin.posts.destroy' ,  $post->id)}}" method="POST" class="d-inline-block ">
@@ -45,16 +63,6 @@
                                                     Delete
                                                 </button>
                                         </form>
-                                    </a>
-                                    <a href="{{ route('admin.posts.edit' , $post->id) }}" 
-                                        class="btn btn-outline-info text-decoration-none" 
-                                    > 
-                                        Edit
-                                    </a>
-                                    <a href="{{ route('admin.posts.show' , $post->id) }}" 
-                                        class="btn btn-outline-secondary text-decoration-none" 
-                                    > 
-                                        Show
                                     </a>
                                 </td>
                             </tr>
