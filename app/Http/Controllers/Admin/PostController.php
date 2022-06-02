@@ -51,7 +51,7 @@ class PostController extends Controller
         $newPost = new Post();
         $newPost->fill($postData);
 
-        $newPost->slug = Post::covertToSlug($newPost->title);
+        $newPost->slug = Post::convertToSlug($newPost->title);
         $newPost->save();
 
         return redirect()->route('admin.posts.index');
@@ -108,7 +108,7 @@ class PostController extends Controller
 
         $post->fill($postData);
 
-        $post->slug = Post::covertToSlug($post->title);
+        $post->slug = Post::convertToSlug($post->title);
         $post->update();
 
         return redirect()->route('admin.posts.index');

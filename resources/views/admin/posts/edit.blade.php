@@ -10,45 +10,63 @@
                     <div class="card-header">Edit a Post</div>
 
                     <div class="card-body">
-                    <form action="{{route('admin.posts.update', $post)}}" method="POST">
-                        {{-- Token  --}}
-                        @csrf
-                        {{-- / Token  --}}
-
-                        {{-- title post --}}
-                        @method('PUT')
-                        <div class="form-group">
-                            <label for="title">Title:</label>
-                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror " placeholder="Post's title"
-
-                            >@error('title')
-                            <div class="invalid-feedback">
-                                {{$message}}
-                            </div>
-
-                            @enderror
+                        <div class="errors">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
-                        <div class="form-group">
-                            <label for="content">Content:</label>
-                            <textarea type="text" name="content" class="form-control @error('content') is-invalid @enderror" placeholder="Post's content">
+                        <form action="{{route('admin.posts.update', $post)}}" method="POST">
+                            {{-- Token  --}}
+                            @csrf
+                            {{-- / Token  --}}
+                            @method('PUT')
 
-                            </textarea>
-                            @error('content')
+                            {{-- title post --}}
+                            <div class="form-group">
+                                <label for="title">Title:</label>
+                                <input type="text" name="title" 
+                                    class="form-control @error('title') is-invalid @enderror " 
+                                    placeholder="Post's title"
+                                    value="{{ old('title', $post->title) }}"
+                                >
+                                @error('title')
                                     <div class="invalid-feedback">
                                         {{$message}}
                                     </div>
-                            @enderror
-                        </div>
-                        {{--/ content post --}}
+                                @enderror
+                            </div>
+                            {{--/ title post --}}
 
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-info white" value="Edit Post">
-                        </div>
-                    </form>
+                            {{-- content post --}}
+                            <div class="form-group">
+                                <label for="content">Content:</label>
+                                <textarea type="text" name="content" 
+                                    class="form-control @error('content') is-invalid @enderror" 
+                                    placeholder="Write the post's content..."
+                                >{{ old('content', $post->content) }}</textarea>
+                                @error('content')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                @enderror
+                            </div>
+                            {{--/ content post --}}
+
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-info white" value="Edit Post">
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-                    <a href="{{route('admin.posts.index')}}" class="btn btn-success"> Back</a>
-
+                <a href="{{route('admin.posts.index')}}" class="btn btn-success">
+                    Back
+                </a>
             </div>
         </div>
     </div>
