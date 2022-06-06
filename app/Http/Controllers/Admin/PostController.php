@@ -106,11 +106,11 @@ class PostController extends Controller
         // le due tabelle tramite le parole chiave has many e belongs to... 
         // quindi nel show.blade per richiamarla posso direttamente utilizzare
         // $post->category->name 
+        // return view('admin.posts.edit', compact('post'));
 
-        // $categories = Category::all();
-        // return view('admin.posts.edit', compact('post', 'categories'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
         
-        return view('admin.posts.edit', compact('post'));
     }
 
     /**
