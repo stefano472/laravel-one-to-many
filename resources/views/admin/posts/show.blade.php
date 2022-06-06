@@ -15,7 +15,7 @@
                 <dt>Slug:</dt>
                 <dd>{{$post->slug}}</dd>
                 <dt>Category:</dt>
-                <dd>{{$category->name}}</dd>
+                <dd>{{$post->category->name}}</dd>
                 <dt>Content:</dt>
                 <dd>{{$post->content}}</dd>
             </dl>

@@ -34,11 +34,13 @@
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->slug }}</td>
                                 <td>
-                                    @foreach ($categories as $category)
+                                    {{-- riguarda spiegazione in in postcontroller function show --}}
+                                    {{-- @foreach ($categories as $category)
                                         @if ($category->id === $post->category_id) 
                                             {{ $category->name }}
                                         @endif
-                                    @endforeach
+                                    @endforeach --}}
+                                    {{ $post->category->name }}
                                 </td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.posts.show' , $post->id) }}" 

@@ -19,10 +19,12 @@ class PostController extends Controller
     {
         //
         $posts = Post::all();
-        // $category = Category::find($post->category_id);
-        $categories = Category::all();
-        
-        return view('admin.posts.index', compact('posts', 'categories'));
+
+        // stessa cosa di function show
+        // $categories = Category::all();
+        // return view('admin.posts.index', compact('posts', 'categories'));
+
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -99,9 +101,16 @@ class PostController extends Controller
             abort(404);
         }
 
-        $categories = Category::all();
+        // avendo nominato una funzione category nel modello Category, posso accendere alle 
+        // categories utilizzando questa funzione come attributo, perché ho legato 
+        // le due tabelle tramite le parole chiave has many e belongs to... 
+        // quindi nel show.blade per richiamarla posso direttamente utilizzare
+        // $post->category->name 
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        // $categories = Category::all();
+        // return view('admin.posts.edit', compact('post', 'categories'));
+        
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
